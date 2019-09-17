@@ -2,32 +2,38 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.ArticleCard {
+  display:  grid;
+  /* grid-template-areas: "up username comment_count" "down article_title"
+   */
+  grid-template-columns: 1fr 6fr 6fr;
+  border: 1px solid black;
+  margin-bottom: 2%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.up {
+  border-right: 1px solid black;
 }
 
-.App-link {
-  color: #61dafb;
+.down {
+  border-right: 1px solid black;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+li {
+  list-style: none
+}
+
+.Header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.ResetHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.commentsList {
+  border: 1px solid black;
+  margin-bottom: 2%;
 }
