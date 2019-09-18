@@ -2,20 +2,25 @@ import React, { Component } from 'react';
 import * as api from '../api'
 import ArticleCard from './ArticleCard'
 import SortArticles from './SortArticles';
+import ErrorDisplay from './ErrorDisplay';
+import LoadingPage from './LoadingPage';
 
 class ArticlesList extends Component {
     state = {
         isLoading: true,
-        articles: []
+        articles: [],
+        err: null
     }
 
     render() {
-        if (this.state.isLoading) return (<h1>...Loading</h1>)
+        const { isLoading, articles, err } = this.state;
+        if (isLoading) return <LoadingPage />
+        if (err) return <ErrorDisplay err={err}/>
         return (
             <div className="ArticlesList">
                 <SortArticles fetchArticles={this.fetchArticles}/>
                 <ul>
-                    {this.state.articles.map(article => {
+                    {articles.map(article => {
                         return <li key={article.article_id}><ArticleCard article={article} /></li>
                     })}
                 </ul>
@@ -35,7 +40,10 @@ class ArticlesList extends Component {
 
     fetchArticles = (topic, sort_by, order) => {
         api.getArticles(topic, sort_by, order).then((articles) => {
-            this.setState({ articles, isLoading: false })
+            this.setState({ articles, isLoading: false, err: null })
+        })
+        .catch(err => {
+            this.setState({ err })
         })
     }
 }

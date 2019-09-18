@@ -1,17 +1,31 @@
 import React from 'react';
+import * as api from '../api';
 
-const UsersList = (props) => {
+class UsersList extends React.Component {
+    state = {
+        users: []
+    }
+
+    render() {
+        const { users } = this.state
         return (
-            <div>
-                Username:
-                        <select onChange={(event) => props.updateUser(event.target.value)}>
+            <div className="UsersList">
+                Select your username:
+                        <select onChange={(event) => this.props.updateUser(event.target.value)}>
                     <option value=""></option>
-                    {props.users.map(user => {
-                        return <option key={user}>{user}</option>
+                    {users.map(user => {
+                        return <option key={user.username}>{user.username}</option>
                     })}
                 </select>
             </div>
         );
+    }
+    
+    componentDidMount() {
+        api.getUsers().then(users => {
+            this.setState({ users })
+        })
+    }
     
 
     // handleChange = (event) => {

@@ -2,24 +2,31 @@ import React, { Component } from 'react';
 import * as api from '../api';
 import CommentsList from './CommentsList';
 import Header from './Header';
+// import VoteIncrementer from './VoteIncrementer';
+import ErrorDisplay from './ErrorDisplay';
+// import { Link } from '@reach/router';
+import SingleArticleCard from './SingleArticleCard';
 
 class SingleArticle extends Component {
     state = {
-        article: {}
+        article: {},
+        err: null
     }
     render() {
-        const { article } = this.state;
-
+        const { article, err } = this.state;
+        const dateStr = article.created_at
+        const dateArr = dateStr && dateStr.slice(0,10).split("-")
+        const date = dateArr && `${dateArr[2]}-${dateArr[1]}-${dateArr[0]}`;
+        
+        if (err) return <ErrorDisplay err={err} />
         return (
-            <div>
+            <div className="SingleArticle">
                 <Header />
-                <p className="up">↑</p>
-                <p className="down">↓</p>
-                <p className="username">nc/{article.author}</p>
-                <p className="comment_count">Comments: {article.comment_count}</p>
-                <p>Votes: {article.votes}</p>
+                {/* <VoteIncrementer id={article.article_id} endpoint="articles" votes={article.votes} /> */}
+                <SingleArticleCard votes={article.votes} id={article.article_id} date={date} author={article.author} title={article.title} body={article.body}/>
+                {/* <p className="username"><Link to={`/users/${article.author}`}>nc/{article.author}</Link> Posted on: {date}</p>
                 <h3>{article.title}</h3>
-                <p>{article.body}</p>
+                <p className="article_body">{article.body}</p> */}
                 <CommentsList users={this.props.users} user={this.props.user} article_id={article.article_id} />
             </div>
         );
@@ -29,12 +36,17 @@ class SingleArticle extends Component {
         this.fetchArticleByID()
     }
 
+    
+
 
     fetchArticleByID = () => {
         const { id } = this.props;
         api.getArticleByID(id).then(article => {
-            this.setState({ article });
+            this.setState({ article, err: null });
         })
+            .catch(err => {
+                this.setState({ err })
+            })
     }
 }
 

@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import * as api from '../api';
+import ErrorDisplay from './ErrorDisplay';
 
 class PostComment extends Component {
     state = {
-        // author: "",
-        body: ""
+        body: "",
+        err: null
     }
     render() {
+        const { body, err } = this.state;
+        if (err) return <ErrorDisplay err={err} />
         return (
             <div>
-                    <h2>{!this.props.user && "You must login to post a comment"}</h2>
                     <form onSubmit={this.handleSubmit}>
-                    <textarea value={this.state.body} className="body" onChange={this.handleChange}></textarea>
+                    <textarea placeholder="Type your comment here" value={body} className="body" onChange={this.handleChange} required></textarea>
                     <br></br>
                     <button>Submit</button>
                 </form>
@@ -31,12 +33,15 @@ class PostComment extends Component {
         if ( author && body) {
             api.sendComment(article_id, author, body).then((newlyPostedComment) => {
                 this.props.addComment(newlyPostedComment)
-            });
+            }).catch(err => {
+                this.setState({ err })
+            })
             
         }
         this.setState({
             author: "",
             body: "",
+            err: null
         })
     }
 
