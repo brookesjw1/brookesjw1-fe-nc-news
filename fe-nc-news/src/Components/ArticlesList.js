@@ -10,16 +10,17 @@ class ArticlesList extends Component {
         isLoading: true,
         articles: [],
         err: null,
+        total_count: 0,
         p: 1
     }
 
     render() {
-        const { isLoading, articles, err } = this.state;
+        const { isLoading, articles, err, total_count } = this.state;
         if (isLoading) return <LoadingPage />
         if (err) return <ErrorDisplay err={err}/>
         return (
             <div className="ArticlesList">
-                <SortArticles fetchArticles={this.fetchArticles}/>
+                <SortArticles total_count={total_count} fetchArticles={this.fetchArticles}/>
                 <ul>
                     {articles.map(article => {
                         return <li key={article.article_id}><ArticleCard article={article} /></li>
@@ -31,12 +32,6 @@ class ArticlesList extends Component {
 
     componentDidMount() {
        this.fetchArticles();
-    //    window.addEventListener('scroll', (event) => {
-    //        const element = event.target.scrollingElement;
-    //        if (element.scrollHeight - element.scrollTop === element.clientHeight) {
-    //            this.fetchArticles(this.state.p + 1)
-    //        }
-    //    })
     }
 
     // componentDidUpdate(prevProps) {
@@ -46,8 +41,8 @@ class ArticlesList extends Component {
     // }
 
     fetchArticles = (topic, sort_by, order, p) => {
-        api.getArticles(topic, sort_by, order, p).then((articles) => {
-            this.setState({ articles, isLoading: false, err: null })
+        api.getArticles(topic, sort_by, order, p).then(({articles, total_count }) => {
+            this.setState({ articles, isLoading: false, err: null, total_count })
         })
         .catch(err => {
             this.setState({ err })

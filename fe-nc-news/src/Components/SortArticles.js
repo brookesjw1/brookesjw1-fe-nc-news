@@ -61,8 +61,9 @@ class SortArticles extends React.Component {
         this.fetchTopics();
         window.addEventListener('scroll', (event) => {
             const { topic, sort_by, order, p } = this.state;
+            const { total_count } = this.props;
                    const element = event.target.scrollingElement;
-                   if (element.scrollHeight - element.scrollTop === element.clientHeight && p < 4) {
+                   if (element.scrollHeight - element.scrollTop === element.clientHeight && p < total_count / 10) {
                        this.props.fetchArticles(topic, sort_by, order, p + 1 );
                        this.setState(currentState => {
                            return { p: currentState.p+1}

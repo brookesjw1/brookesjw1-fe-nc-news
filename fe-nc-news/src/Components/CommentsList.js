@@ -44,7 +44,7 @@ class CommentsList extends Component {
         window.addEventListener('scroll', (event) => {
             const { p } = this.state;
             const element = event.target.scrollingElement;
-            if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+            if (element.scrollHeight - element.scrollTop === element.clientHeight && p * 10 < this.props.comment_count) {
                 this.fetchComments(p + 1)
             }
         })
