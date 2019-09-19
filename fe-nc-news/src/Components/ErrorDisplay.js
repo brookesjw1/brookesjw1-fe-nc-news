@@ -2,10 +2,17 @@ import React from 'react';
 import Header from './Header';
 
 const ErrorDisplay = ({err}) => {
+    let status;
+    let msg;
+    if (err) {
+         status = err.response.status;
+            msg = err.response.data.msg;
+    }
+    
     return (
         <div>
             <Header />
-            Status {err.response.status || "404"}: {err.response.data.msg || "Not found"}
+            Status {status|| "404"}: {msg || "Not found"}
         </div>
     );
 };

@@ -54,23 +54,35 @@ class SortArticles extends React.Component {
         if (this.state.order === "" && this.state.order !== prevState.order) {
             this.props.fetchArticles()
         }
-       
     }
-
+    
     componentDidMount() {
         this.fetchTopics();
-        window.addEventListener('scroll', (event) => {
+        window.addEventListener('scroll', this.handleScroll)
+    }
+
+    handleScroll = (event) => {
             const { topic, sort_by, order, p } = this.state;
             const { total_count } = this.props;
-                   const element = event.target.scrollingElement;
-                   if (element.scrollHeight - element.scrollTop === element.clientHeight && p < total_count / 10) {
-                       this.props.fetchArticles(topic, sort_by, order, p + 1 );
-                       this.setState(currentState => {
-                           return { p: currentState.p+1}
+            const element = event.target.scrollingElement;
+            if (element.scrollHeight - element.scrollTop === element.clientHeight && p < total_count / 10) {
+                this.props.fetchArticles(topic, sort_by, order, p + 1 );
+                this.setState(currentState => {
+                           return { p: currentState.p + 1}
                        })
                    }
-               })
     }
+
+    componentWillUnmount() {
+        window.removeEventListener("scroll", this.handleScroll)
+    }
+
+    // abortController = new AbortController();
+
+    // componentWillUnmount() {
+    //     // console.log(this.abortController)
+    //     this.abortController.abort();
+    // }
 
     fetchTopics = () => {
         api.getTopics().then(topics => {

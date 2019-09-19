@@ -20,7 +20,7 @@ class CommentsList extends Component {
         if (isLoading) return <LoadingPage />
         return (
             <div >
-                {this.props.user ? <PostComment user={this.props.user} addComment={this.addComment} article_id={this.props.article_id} users={this.props.users} /> : <h2>Login to post comment</h2>}
+                {this.props.user ? <PostComment user={this.props.user} addComment={this.addComment} article_id={this.props.article_id}  /> : <h2>Login to post comment</h2>}
                 <p className="comment_count">Comment count: {this.props.comment_count}</p>
                 <ul >
                     {comments.map(comment => {
@@ -40,19 +40,26 @@ class CommentsList extends Component {
         );
     }
 
+    handleScroll = (event) => {
+        const { p } = this.state;
+        const element = event.target.scrollingElement;
+        if (element.scrollHeight - element.scrollTop === element.clientHeight && p * 10 < this.props.comment_count) {
+            this.fetchComments(p + 1)
+        }
+    }
+
     componentDidMount() {
-        window.addEventListener('scroll', (event) => {
-            const { p } = this.state;
-            const element = event.target.scrollingElement;
-            if (element.scrollHeight - element.scrollTop === element.clientHeight && p * 10 < this.props.comment_count) {
-                this.fetchComments(p + 1)
-            }
-        })
+        window.addEventListener('scroll', this.handleScroll)
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("scroll", this.handleScroll)
     }
 
     componentDidUpdate(prevProps, prevState) {
         const { p } = this.state;
-        if (this.props.article_id !== prevProps.article_id) {
+        const { article_id } = this.props;
+        if (article_id !== prevProps.article_id) {
             this.fetchComments(p)
         }
         if (this.state.comments.length !== prevState.comments.length) {
@@ -61,11 +68,10 @@ class CommentsList extends Component {
     }
 
     fetchComments = (p) => {
-        if (this.props.article_id) {
-            api.getComments(this.props.article_id, p).then(comments => {
-                this.setState((currentState) => {
-                    return { comments, err: null, isLoading: false, p }
-                })
+        const { article_id } = this.props;
+        if (article_id) {
+            api.getComments(article_id, p).then(comments => {
+                this.setState({ comments, err: null, isLoading: false, p })
             })
                 .catch(err => {
                     this.setState({ err })
@@ -75,7 +81,7 @@ class CommentsList extends Component {
 
     addComment = newComment => {
         this.setState((currentState) => {
-            return { comments: [newComment, ...currentState.comments] }
+            return { comments: [ ...currentState.comments, newComment] }
         })
     }
 

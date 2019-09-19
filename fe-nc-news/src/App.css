@@ -13,6 +13,8 @@ body {
 
 .ArticlesList {
   color: black;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .ArticleCard {
@@ -27,17 +29,24 @@ body {
   width: 95%;
   background-color: white;
   height: auto;
-
 }
 
 
 .comment_count {
   grid-area: comment_count;
+  margin-bottom: 0%;
+  margin-top: 0%;
 }
 
 .ArticleTitle {
   grid-area: ArticleTitle;
-  /* margin: 1%; */
+  text-align: left;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0%;
+  margin-bottom: 0%;
+  font-size: medium;
 }
 
 .CommentCard {
@@ -46,7 +55,12 @@ body {
 
 .info {
   grid-area: info;
-  margin: 1%;
+  margin-top: 0%;
+  text-align: left;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0%;
 }
 
 .voteIncrementer {
@@ -84,7 +98,8 @@ li {
   grid-template-columns: 1fr 1fr 1fr;
   border-bottom: 10px solid #BA1F31;
   margin-bottom: 2%;
-  padding-top: 0%;
+  margin-top: 0%;
+
 }
 
 
@@ -110,6 +125,7 @@ li {
   width: 95%;
   margin-left: auto;
   margin-right: auto;
+  text-align: left;
 }
 
 textarea {
@@ -124,6 +140,7 @@ a {
 
 .HomePage {
   grid-area: HomePage;
+  margin-top: 0%;
 }
 
 .SingleArticleCard {
@@ -142,6 +159,10 @@ a {
   grid-area: singleArticleTitle;
   color: #BA1F31;
   margin: 0%;
+  text-align: left;
+  width: 95%;
+  margin-left:  auto;
+  margin-right: auto;
 }
 
 .article_body {
@@ -149,6 +170,7 @@ a {
   width: 95%;
   margin-right: auto;
   margin-left: auto;
+  text-align: left;
 }
 
 .voteButton {

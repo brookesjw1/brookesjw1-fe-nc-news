@@ -19,9 +19,9 @@ class ArticlesList extends Component {
         if (isLoading) return <LoadingPage />
         if (err) return <ErrorDisplay err={err}/>
         return (
-            <div className="ArticlesList">
+            <div >
                 <SortArticles total_count={total_count} fetchArticles={this.fetchArticles}/>
-                <ul>
+                <ul className="ArticlesList">
                     {articles.map(article => {
                         return <li key={article.article_id}><ArticleCard article={article} /></li>
                     })}
@@ -33,6 +33,13 @@ class ArticlesList extends Component {
     componentDidMount() {
        this.fetchArticles();
     }
+
+    // abortController = new AbortController();
+
+    // componentWillUnmount() {
+    //     // console.log(this.abortController)
+    //     this.abortController.abort();
+    // }
 
     // componentDidUpdate(prevProps) {
     //     if (this.props.selectedTopic !== prevProps.selectedTopic) {

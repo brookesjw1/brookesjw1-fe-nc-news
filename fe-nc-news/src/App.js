@@ -10,7 +10,6 @@ import Footer from './Components/Footer';
 
 class App extends React.Component {
   state = {
-    // users: ["jessjelly", "grumpy19", "tickle122"],
     user: ""
   }
     render() {
@@ -23,7 +22,7 @@ class App extends React.Component {
             <ArticlesList  path="/articles" />
             <SingleArticle user={this.state.user} path="/articles/:id" />
             <SingleUser path="/users/:username" />
-            <ErrorDisplay default />
+            <ErrorDisplay path="/*" />
           </Router>
           <Footer />
     
