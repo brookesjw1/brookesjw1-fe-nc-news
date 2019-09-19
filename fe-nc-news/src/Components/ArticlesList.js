@@ -9,7 +9,8 @@ class ArticlesList extends Component {
     state = {
         isLoading: true,
         articles: [],
-        err: null
+        err: null,
+        p: 1
     }
 
     render() {
@@ -30,6 +31,12 @@ class ArticlesList extends Component {
 
     componentDidMount() {
        this.fetchArticles();
+    //    window.addEventListener('scroll', (event) => {
+    //        const element = event.target.scrollingElement;
+    //        if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+    //            this.fetchArticles(this.state.p + 1)
+    //        }
+    //    })
     }
 
     // componentDidUpdate(prevProps) {
@@ -38,8 +45,8 @@ class ArticlesList extends Component {
     //     }
     // }
 
-    fetchArticles = (topic, sort_by, order) => {
-        api.getArticles(topic, sort_by, order).then((articles) => {
+    fetchArticles = (topic, sort_by, order, p) => {
+        api.getArticles(topic, sort_by, order, p).then((articles) => {
             this.setState({ articles, isLoading: false, err: null })
         })
         .catch(err => {

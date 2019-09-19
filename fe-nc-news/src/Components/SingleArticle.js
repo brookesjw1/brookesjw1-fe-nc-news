@@ -22,12 +22,8 @@ class SingleArticle extends Component {
         return (
             <div className="SingleArticle">
                 <Header />
-                {/* <VoteIncrementer id={article.article_id} endpoint="articles" votes={article.votes} /> */}
-                <SingleArticleCard votes={article.votes} id={article.article_id} date={date} author={article.author} title={article.title} body={article.body}/>
-                {/* <p className="username"><Link to={`/users/${article.author}`}>nc/{article.author}</Link> Posted on: {date}</p>
-                <h3>{article.title}</h3>
-                <p className="article_body">{article.body}</p> */}
-                <CommentsList users={this.props.users} user={this.props.user} article_id={article.article_id} />
+                <SingleArticleCard topic={article.topic} votes={article.votes} id={article.article_id} date={date} author={article.author} title={article.title} body={article.body}/>
+                <CommentsList comment_count={article.comment_count} users={this.props.users} user={this.props.user} article_id={article.article_id} />
             </div>
         );
     }

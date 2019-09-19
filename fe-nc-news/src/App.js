@@ -6,6 +6,7 @@ import SingleArticle from './Components/SingleArticle';
 import UsersList from './Components/UsersList';
 import ErrorDisplay from './Components/ErrorDisplay';
 import SingleUser from './Components/SingleUser';
+import Footer from './Components/Footer';
 
 class App extends React.Component {
   state = {
@@ -24,6 +25,7 @@ class App extends React.Component {
             <SingleUser path="/users/:username" />
             <ErrorDisplay default />
           </Router>
+          <Footer />
     
         </div>
       );

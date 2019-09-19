@@ -4,13 +4,14 @@ const request = axios.create({
     baseURL: "https://brookesjw1-nc-news.herokuapp.com/api"
 })
 
-export const getArticles = (topic, sort_by, order) => {
+export const getArticles = (topic, sort_by, order, p=1) => {
     return request
     .get("/articles", {
         params: {
             topic,
             sort_by,
-            order
+            order,
+            limit: p * 10
         }
     })
     .then(({ data }) => {
@@ -42,9 +43,13 @@ export const getArticleByID = (id) => {
     })
 }
 
-export const getComments = id => {
+export const getComments = (id, p = 1) => {
     return request
-    .get(`/articles/${id}/comments`)
+    .get(`/articles/${id}/comments`, {
+        params: {
+            limit: p * 10
+        }
+    })
     .then(({ data }) => {
         return data.comments;
     })

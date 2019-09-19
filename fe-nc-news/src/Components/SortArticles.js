@@ -7,7 +7,8 @@ class SortArticles extends React.Component {
         sort_by: "",
         order: "desc",
         topic: "",
-        topics: []
+        topics: [],
+        p: 1
     }
 
     render() {
@@ -44,7 +45,8 @@ class SortArticles extends React.Component {
         this.setState({
             sort_by: "",
             order: "",
-            topic: ""
+            topic: "",
+            p: 1
         })
     }
 
@@ -56,7 +58,17 @@ class SortArticles extends React.Component {
     }
 
     componentDidMount() {
-        this.fetchTopics()
+        this.fetchTopics();
+        window.addEventListener('scroll', (event) => {
+            const { topic, sort_by, order, p } = this.state;
+                   const element = event.target.scrollingElement;
+                   if (element.scrollHeight - element.scrollTop === element.clientHeight && p < 4) {
+                       this.props.fetchArticles(topic, sort_by, order, p + 1 );
+                       this.setState(currentState => {
+                           return { p: currentState.p+1}
+                       })
+                   }
+               })
     }
 
     fetchTopics = () => {

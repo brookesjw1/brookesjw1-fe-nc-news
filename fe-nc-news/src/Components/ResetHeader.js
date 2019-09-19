@@ -3,8 +3,8 @@ import { Link } from '@reach/router';
 
 const ResetHeader = (props) => {
     return (
-        <div className="ResetHeader">
-            <Link onClick={props.resetState} to="/"><h1>NC News</h1></Link>
+        <div className="Header">
+            <Link onClick={props.resetState} to="/"><h1 className="HomePage">NC News</h1></Link>
         </div>
     );
 };
