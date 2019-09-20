@@ -15,26 +15,28 @@ class SortArticles extends React.Component {
         return (
             <div>
                 <ResetHeader resetState={this.resetState} />
-                <form onSubmit={this.handleSubmit}>
+                <form className="sortbar" onSubmit={this.handleSubmit}>
                     Select articles by topic:
-                <select value={this.state.topic} onChange={this.handleTopicSelection}>
+                <select className="topicSelection" value={this.state.topic} onChange={this.handleTopicSelection}>
 
                         <option key="all" value="all" >All topics</option>
                         {this.state.topics.map(topic => {
                             return <option key={topic.slug}>{topic.slug}</option>
                         })}
                     </select>
+                    <br></br>
                     Sort by:
 
-                <select value={this.state.sort_by} onChange={this.handleSortBy}>
+                <select className="sortBy" value={this.state.sort_by} onChange={this.handleSortBy}>
                         <option value=""></option>
                         <option value="created_at">Date created</option>
                         <option value="comment_count">Comment count</option>
                         <option value="votes">Votes</option>
                     </select>
-                    <input type="radio" value="asc" checked={this.state.order === "asc"} name="sortOrder" onChange={this.handleSortOrder} />Asc
-                <input type="radio" value="desc" checked={this.state.order === "desc" || this.state.order === ""} name="sortOrder" onChange={this.handleSortOrder} />Desc
-                <button>Submit</button>
+                    <input type="radio" value="asc" checked={this.state.order === "asc"} className="sortOrder" onChange={this.handleSortOrder} />Asc
+                <input type="radio" value="desc" checked={this.state.order === "desc" || this.state.order === ""} className="sortOrder" onChange={this.handleSortOrder} />Desc
+                <br></br>
+                <button className="submitButton">Submit</button>
                 </form>
             </div>
 

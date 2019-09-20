@@ -22,7 +22,7 @@ class CommentsList extends Component {
             <div >
                 {this.props.user ? <PostComment user={this.props.user} addComment={this.addComment} article_id={this.props.article_id}  /> : <h2>Login to post comment</h2>}
                 <p className="comment_count">Comment count: {this.props.comment_count}</p>
-                <ul >
+                <ul className="comments">
                     {comments.map(comment => {
                         const dateArr = comment.created_at.slice(0, 10).split("-");
                         const date = `${dateArr[2]}-${dateArr[1]}-${dateArr[0]}`;
@@ -62,9 +62,6 @@ class CommentsList extends Component {
         if (article_id !== prevProps.article_id) {
             this.fetchComments(p)
         }
-        if (this.state.comments.length !== prevState.comments.length) {
-            this.fetchComments(p)
-        }
     }
 
     fetchComments = (p) => {
@@ -81,13 +78,15 @@ class CommentsList extends Component {
 
     addComment = newComment => {
         this.setState((currentState) => {
-            return { comments: [ ...currentState.comments, newComment] }
+            return { comments: [ newComment, ...currentState.comments] }
         })
     }
 
     removeComment = (id) => {
-        api.deleteComment(id).then(delCount => {
-            this.fetchComments();
+        api.deleteComment(id).then(() => {
+            this.setState(currentState => {
+                return { comments: currentState.comments.filter(comment => comment.comment_id !== id)}
+            })
         })
             .catch(err => {
                 this.setState({ err })

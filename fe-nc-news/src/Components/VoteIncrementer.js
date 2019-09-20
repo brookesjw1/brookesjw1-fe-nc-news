@@ -11,9 +11,9 @@ class VoteIncrementer extends Component {
         const { voteChange, err } = this.state;
         return (
             <div className="voteIncrementer">
-                <button className="voteButton" onClick={() => this.updateVotes(1)} disabled={voteChange === 1}>↑</button>
-                <p>Votes: {this.props.votes + voteChange}</p>
-                <button className="voteButton" onClick={() => this.updateVotes(-1)} disabled={voteChange === -1}>↓</button>
+                <button className="voteButton" onClick={() => this.updateVotes(1)} disabled={voteChange === 1}><strong className="arrow">⬆</strong></button>
+                <p className="votes">Votes: {this.props.votes + voteChange}</p>
+                <button className="voteButton" onClick={() => this.updateVotes(-1)} disabled={voteChange === -1}><strong className="arrow">⬇</strong></button>
                 {err && `${err.status}: ${err.msg}`}
             </div>
         );
