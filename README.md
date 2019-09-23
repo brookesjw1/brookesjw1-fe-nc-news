@@ -53,7 +53,11 @@ Link to back-end API - (https://brookesjw1-nc-news.herokuapp.com/api/)
 ## Dependencies
 
 @reach/router: 1.2.1,
+
 axios: 0.19.0,
+
 react: 16.9.0,
+
 react-dom: 16.9.0,
+
 react-scripts: 3.1.1

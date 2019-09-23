@@ -35,6 +35,7 @@ class ArticlesList extends Component {
        this.fetchArticles();
     }
 
+   
 
     fetchArticles = (topic, sort_by, order, p) => {
         api.getArticles(topic, sort_by, order, p).then(({articles, total_count }) => {
