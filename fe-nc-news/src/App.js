@@ -15,8 +15,8 @@ class App extends React.Component {
     render() {
       return (
         <div className="App">
-          <UsersList  updateUser={this.updateUser}/>
-          <h4 className="Login">{this.state.user &&`Logged in as ${this.state.user}`}</h4>
+          <UsersList  user={this.state.user} updateUser={this.updateUser}/>
+          {/* <p className="Login">{this.state.user &&`Logged in as ${this.state.user}`}</p> */}
           <Router>
             <ArticlesList  path="/" />
             <ArticlesList  path="/articles" />

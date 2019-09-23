@@ -15,9 +15,10 @@ class SortArticles extends React.Component {
         return (
             <div>
                 <ResetHeader resetState={this.resetState} />
-                <form className="sortbar" onSubmit={this.handleSubmit}>
-                    Select articles by topic:
-                <select className="topicSelection" value={this.state.topic} onChange={this.handleTopicSelection}>
+                {/* <label for="sortbar">Sort bar</label> */}
+                <form id="sortbar" className="sortbar" onSubmit={this.handleSubmit}>
+                    <label htmlFor="topicSelection">Select articles by topic:</label>
+                <select id="topicSelection" className="topicSelection" value={this.state.topic} onChange={this.handleTopicSelection}>
 
                         <option key="all" value="all" >All topics</option>
                         {this.state.topics.map(topic => {
@@ -25,16 +26,16 @@ class SortArticles extends React.Component {
                         })}
                     </select>
                     <br></br>
-                    Sort by:
-
-                <select className="sortBy" value={this.state.sort_by} onChange={this.handleSortBy}>
+               
+                <label htmlFor="sortBy">Sort by:</label>
+                <select id="sortBy" className="sortBy" value={this.state.sort_by} onChange={this.handleSortBy}>
                         <option value=""></option>
                         <option value="created_at">Date created</option>
                         <option value="comment_count">Comment count</option>
                         <option value="votes">Votes</option>
                     </select>
-                    <input type="radio" value="asc" checked={this.state.order === "asc"} className="sortOrder" onChange={this.handleSortOrder} />Asc
-                <input type="radio" value="desc" checked={this.state.order === "desc" || this.state.order === ""} className="sortOrder" onChange={this.handleSortOrder} />Desc
+                    <input id="Asc" type="radio" value="asc" checked={this.state.order === "asc"} className="sortOrder" onChange={this.handleSortOrder} /><label htmlFor="Asc">Asc</label>
+                <input id="Desc" type="radio" value="desc" checked={this.state.order === "desc" || this.state.order === ""} className="sortOrder" onChange={this.handleSortOrder} /><label htmlFor="Desc">Desc</label>
                 <br></br>
                 <button className="submitButton">Submit</button>
                 </form>

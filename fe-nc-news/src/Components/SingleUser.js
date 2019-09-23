@@ -15,7 +15,7 @@ class SingleUser extends Component {
         if (isLoading) return <LoadingPage />
         const { username, avatar_url, name } = selectedUser;
         return (
-            <div>
+            <main>
                 <Header />
                 Username: {username}
                 <p>Name: {name}</p>
@@ -26,7 +26,7 @@ class SingleUser extends Component {
                     })}
                 </ul>
                 
-            </div>
+            </main>
         );
     }
 

@@ -2,9 +2,9 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <div>
+        <footer>
             NC News: 2019
-        </div>
+        </footer>
     );
 };
 

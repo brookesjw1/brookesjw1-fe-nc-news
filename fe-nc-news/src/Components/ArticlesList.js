@@ -19,14 +19,14 @@ class ArticlesList extends Component {
         if (isLoading) return <LoadingPage />
         if (err) return <ErrorDisplay err={err}/>
         return (
-            <div >
+            <main >
                 <SortArticles total_count={total_count} fetchArticles={this.fetchArticles}/>
                 <ul className="ArticlesList">
                     {articles.map(article => {
                         return <li key={article.article_id}><ArticleCard article={article} /></li>
                     })}
                 </ul>
-            </div>
+            </main>
         );
     }
 

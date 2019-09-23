@@ -8,7 +8,7 @@ const SingleArticleCard = (props) => {
         <div className="SingleArticleCard">
             <VoteIncrementer id={id} endpoint="articles" votes={votes} />
                <p className="singleArticleInfo"><strong>{`nc/${topic}`}</strong> Posted by: <Link to={`/users/${author}`}>u/{author}</Link> on {date}</p>
-                <h3 className="singleArticleTitle">{title}</h3>
+                <h2 className="singleArticleTitle">{title}</h2>
                 <p className="article_body">{body}</p>
         </div>
     );

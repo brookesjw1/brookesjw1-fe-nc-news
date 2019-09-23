@@ -20,11 +20,11 @@ class SingleArticle extends Component {
         
         if (err) return <ErrorDisplay err={err} />
         return (
-            <div className="SingleArticle">
+            <main className="SingleArticle">
                 <Header />
                 <SingleArticleCard topic={article.topic} votes={article.votes} id={article.article_id} date={date} author={article.author} title={article.title} body={article.body}/>
                 <CommentsList comment_count={article.comment_count}  user={this.props.user} article_id={article.article_id} />
-            </div>
+            </main>
         );
     }
 

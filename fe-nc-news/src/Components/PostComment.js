@@ -12,8 +12,9 @@ class PostComment extends Component {
         if (err) return <ErrorDisplay err={err} />
         return (
             <div>
+                    <label htmlFor="postComment">Post comment</label>
                     <form onSubmit={this.handleSubmit}>
-                    <textarea placeholder="Type your comment here" value={body} className="body" onChange={this.handleChange} required></textarea>
+                    <textarea id="postComment" placeholder="Type your comment here" value={body} className="body" onChange={this.handleChange} required></textarea>
                     <br></br>
                     <button>Submit</button>
                 </form>

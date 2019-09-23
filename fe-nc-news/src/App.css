@@ -205,6 +205,7 @@ a {
 .HomePage {
   grid-area: HomePage;
   margin-top: 0%;
+  color:  white;
 }
 
 .SingleArticleCard {
