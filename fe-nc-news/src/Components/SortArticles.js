@@ -15,7 +15,6 @@ class SortArticles extends React.Component {
         return (
             <div>
                 <ResetHeader resetState={this.resetState} />
-                {/* <label for="sortbar">Sort bar</label> */}
                 <form id="sortbar" className="sortbar" onSubmit={this.handleSubmit}>
                     <label htmlFor="topicSelection">Select articles by topic:</label>
                 <select id="topicSelection" className="topicSelection" value={this.state.topic} onChange={this.handleTopicSelection}>

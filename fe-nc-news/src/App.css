@@ -27,7 +27,7 @@ body {
   grid-template-rows: 1fr 1.5fr 1fr;
   border: 1px solid darkgrey;
   margin-bottom: 1.5%;
-  width: 100%;
+  width: 95vw;
   background-color: white;
   height: auto;
 }
