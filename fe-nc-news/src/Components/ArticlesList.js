@@ -30,22 +30,11 @@ class ArticlesList extends Component {
         );
     }
 
+
     componentDidMount() {
        this.fetchArticles();
     }
 
-    // abortController = new AbortController();
-
-    // componentWillUnmount() {
-    //     // console.log(this.abortController)
-    //     this.abortController.abort();
-    // }
-
-    // componentDidUpdate(prevProps) {
-    //     if (this.props.selectedTopic !== prevProps.selectedTopic) {
-    //         this.fetchArticles(this.props.selectedTopic);
-    //     }
-    // }
 
     fetchArticles = (topic, sort_by, order, p) => {
         api.getArticles(topic, sort_by, order, p).then(({articles, total_count }) => {

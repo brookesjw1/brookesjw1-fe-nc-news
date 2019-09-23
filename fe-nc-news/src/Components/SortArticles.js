@@ -79,13 +79,6 @@ class SortArticles extends React.Component {
         window.removeEventListener("scroll", this.handleScroll)
     }
 
-    // abortController = new AbortController();
-
-    // componentWillUnmount() {
-    //     // console.log(this.abortController)
-    //     this.abortController.abort();
-    // }
-
     fetchTopics = () => {
         api.getTopics().then(topics => {
             this.setState({ topics });
