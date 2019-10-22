@@ -7,6 +7,8 @@ import UsersList from './Components/UsersList';
 import ErrorDisplay from './Components/ErrorDisplay';
 import SingleUser from './Components/SingleUser';
 import Footer from './Components/Footer';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from './Components/Header';
 
 class App extends React.Component {
   state = {
@@ -15,7 +17,8 @@ class App extends React.Component {
     render() {
       return (
         <div className="App">
-          <UsersList  user={this.state.user} updateUser={this.updateUser}/>
+          <Header user={this.state.user} updateUser={this.updateUser}/>
+          {/* <UsersList  user={this.state.user} updateUser={this.updateUser}/> */}
           <Router>
             <ArticlesList  path="/" />
             <ArticlesList  path="/articles" />

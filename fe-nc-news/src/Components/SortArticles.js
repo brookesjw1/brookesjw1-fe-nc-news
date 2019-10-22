@@ -14,7 +14,7 @@ class SortArticles extends React.Component {
     render() {
         return (
             <div>
-                <ResetHeader resetState={this.resetState} />
+                {/* <ResetHeader resetState={this.resetState} /> */}
                 <form id="sortbar" className="sortbar" onSubmit={this.handleSubmit}>
                     <label htmlFor="topicSelection">Select articles by topic:</label>
                 <select id="topicSelection" className="topicSelection" value={this.state.topic} onChange={this.handleTopicSelection}>
@@ -67,7 +67,10 @@ class SortArticles extends React.Component {
             const { topic, sort_by, order, p } = this.state;
             const { total_count } = this.props;
             const element = event.target.scrollingElement;
+            console.log(element.scrollHeight - element.scrollTop, element.clientHeight)
             if (element.scrollHeight - element.scrollTop === element.clientHeight && p < total_count / 10) {
+                console.log("something")
+                console.log(topic,sort_by, order, p + 1)
                 this.props.fetchArticles(topic, sort_by, order, p + 1 );
                 this.setState(currentState => {
                            return { p: currentState.p + 1}

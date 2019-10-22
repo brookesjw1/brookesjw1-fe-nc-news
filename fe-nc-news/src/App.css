@@ -17,12 +17,9 @@ body {
 }
 
 .ArticleCard {
-  /* background-color: white; */
   color: black;
   display:  grid;
-  /* grid-template-areas: "voteIncrementer info comment_count" "voteIncrementer ArticleTitle ArticleTitle"; */
   grid-template-areas: "info info comment_count" "ArticleTitle ArticleTitle ArticleTitle" "voteIncrementer voteIncrementer .";
-  /* grid-template-rows: 1fr 1fr; */
   grid-template-columns: 1fr 6fr 3fr;
   grid-template-rows: 1fr 1.5fr 1fr;
   border: 1px solid darkgrey;
@@ -76,36 +73,16 @@ body {
 .voteIncrementer {
   display: flex;
   margin-left: 4%;
-  /* margin-left: auto; */
-  /* margin-bottom: 10%;
-  margin-top: 10%; */
   grid-area: voteIncrementer;
   width: 80%;
   height: 70%;
 }
 
 .voteButton {
-
-  /* background-color: #202829; */
-  /* border: none; */
-  /* color: white; */
-  /* padding: 5% 30%; */
   text-align: center;
   height: 20px;
   margin-top: auto;
   margin-bottom: 2%;
-  /* margin-bottom: 0%;
-  margin-top: auto; */
-  /* margin-top: 10%;
-  margin-bottom: 10%; */
-  /* margin-left: 10%;
-  margin-right: 10%;  */
-  /* display: inline-block; */
-  /* font-size: large; */
-  /* width: 100%; */
-  /* position: absolute; */
-  /* top: 50%; */
-  /* transform: translate(0, -50%) */
 }
 
 .votes {
@@ -113,14 +90,11 @@ body {
   margin-right: 2vw;
   margin-top: auto;
   margin-bottom: auto;
-  /* margin-top: 15%;
-  margin-bottom: 15%; */
 }
 
 
 li {
   list-style: none;
-  /* background-color: white; */
 }
 
 select {
@@ -135,7 +109,7 @@ select {
 }
 
 .UsersList {
-  background-color: #202829;
+  /* background-color: #202829; */
   color: white;
   grid-area: UsersList;
   padding-top: 2%;
@@ -150,11 +124,10 @@ select {
 
 .Header {
   grid-area: Header;
-  background-color: #202829;
-  /* grid-template-areas: "HomePage UsersList Login"; */
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  border-bottom: 10px solid #BA1F31;
+  /* background-color: #202829; */
+  /* display: grid; */
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  border-bottom: 8px solid #BA1F31;
   margin-bottom: 2%;
   margin-top: 0%;
 
@@ -170,10 +143,7 @@ select {
   background-color: white;
   width: 95%;
   display: grid;
-  /* grid-template-areas: "voteIncrementer info CommentDeleter" 
-                        "voteIncrementer CommentBody CommentBody"; */
   grid-template-areas: "info info" "CommentBody CommentBody" "voteIncrementer CommentDeleter";
-  /* grid-template-rows: 1fr 1fr; */
   grid-template-columns: 1.5fr 1fr;
 }
 
@@ -210,11 +180,7 @@ a {
 
 .SingleArticleCard {
   display: grid;
-  /* grid-template-areas: "voteIncrementer info info" 
-                        "voteIncrementer singleArticleTitle singleArticleTitle" 
-                        "voteIncrementer article_body article_body"; */
   grid-template-areas: "info" "singleArticleTitle" "article_body" "voteIncrementer";
-  /* grid-template-rows: 1fr 1fr; */
   grid-template-columns: 1fr;
   background-color: white;
   margin: 2%;
